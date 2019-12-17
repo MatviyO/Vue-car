@@ -27,8 +27,11 @@
             <hr>
             <ul class="list-group">
                 <li v-for="(car, index) of cars"
-                        class="list-group-item list-group-item-action pointer"
-                v-on:click="selectCar(index)">{{car.name}} - {{car.model}}</li>
+                        class="list-group-item list-group-item-action hovered"
+                v-on:click="selectCar(index)"
+                :class="{'active': selectedCarIndex === index}"
+
+                >{{car.name}} - {{car.model}}</li>
             </ul>
         </div>
         <div class="col-md-8 pt-3 " >
@@ -44,9 +47,9 @@
                         <li>Year - <strong>{{car.year}}</strong></li>
                         <li>Owner - <strong> {{car.owner}} </strong></li>
                     </ul>
-                    <p>{{car.phone}}</p>
+                    <p v-if="phoneVisibility">{{car.phone}}</p>
                     <button class="btn btn-primary mr-3">Buy</button>
-                    <button class="btn btn-outline-success">Show phone</button>
+                    <button v-on:click="phoneVisibility = true" class="btn btn-outline-success">Show phone</button>
                 </div>
             </div>
         </div>
