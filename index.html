@@ -4,44 +4,47 @@
     <meta charset="utf-8">
     <title>VueCar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="app.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
 <body>
-<div class="container pt-5">
+<div class="container pt-5" id="app">
     <div class="row mb-5">
         <div class="col">
             <h1>Cars application</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 ">
             <div class="form-group">
                 <label for="search">Find your car</label>
                 <input type="text" class="form-control" id="search" placeholder="Name, model ...">
             </div>
             <hr>
             <ul class="list-group">
-                <li class="list-group-item list-group-item-action pointer">123</li>
-                <li class="list-group-item list-group-item-action pointer">123</li>
-                <li class="list-group-item list-group-item-action pointer">123</li>
+                <li v-for="(car, index) of cars"
+                        class="list-group-item list-group-item-action pointer"
+                v-on:click="selectCar(index)">{{car.name}} - {{car.model}}</li>
             </ul>
         </div>
-        <div class="col-md-8 pt-3">
+        <div class="col-md-8 pt-3 " >
             <div class="row">
-                <div class="col-md-5">
-                    <h2>Bmw</h2>
-                    <img src="image/1.png" alt="" class="rounded detailed-cat-image">
+                <div class="col-md-7">
+                    <h2>{{car.name}}</h2>
+                    <img  :src="car.img" :alt="car.model" class="rounded detailed-cat-image">
                 </div>
-                <div class="col-md-7 pt-2">
+                <div class="col-md-5 pt-2">
                     <h5>Car details</h5>
                     <ul>
-                        <li>Model - <strong>4 series</strong></li>
-                        <li>Year - <strong>2015</strong></li>
-                        <li>Owner - <strong> Oleh</strong></li>
+                        <li>Model - <strong>{{car.model}}</strong></li>
+                        <li>Year - <strong>{{car.year}}</strong></li>
+                        <li>Owner - <strong> {{car.owner}} </strong></li>
                     </ul>
-                    <p>+3 8093757 757</p>
+                    <p>{{car.phone}}</p>
                     <button class="btn btn-primary mr-3">Buy</button>
                     <button class="btn btn-outline-success">Show phone</button>
                 </div>
@@ -49,5 +52,7 @@
         </div>
     </div>
 </div>
+
+<script src="app.js"></script>
 </body>
 </html>
